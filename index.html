@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AKTU बी.टेक. परिणाम</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body, html {
+      height: 100%;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+      background: url('Untitled (6).png') no-repeat center center fixed;
+      background-size: cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .container {
+      background: rgba(255, 255, 255, 0.95);
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+      width: 90%;
+      max-width: 450px;
+      text-align: center;
+    }
+
+    .logo {
+      max-width: 80px;
+      margin-bottom: 15px;
+    }
+
+    h1 {
+      font-size: 1.4rem;
+      margin-bottom: 25px;
+      color: #800000;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 1rem;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background-color: #800000;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #a00000;
+    }
+
+    .note {
+      margin-top: 15px;
+      font-size: 0.9rem;
+      color: #444;
+    }
+
+    @media screen and (max-width: 480px) {
+      .container {
+        padding: 20px;
+      }
+
+      h1 {
+        font-size: 1.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <img src="AKTU Logo.png" alt="AKTU Logo" class="logo" />
+    <h1>AKTU बी.टेक. परिणाम</h1>
+    <input type="text" placeholder="अनुक्रमांक" />
+    <input type="date" placeholder="जन्म तिथि" required />
+    <button id="viewResultBtn">आगे बढ़े</button>
+    <p class="note">
+      यह डॉ ए.पी.जे अब्दुल कलाम तकनीकी विश्वविद्यालय लखनऊ की<br />
+      आधिकारिक ई-ऑनलाइन परिणाम सेवा है।<br />
+      (एकेटीयू-एसडीसी द्वारा संचालित)
+    </p>
+  </div>
+  <script>
+    document.getElementById('viewResultBtn').addEventListener('click', function() {
+      // Redirect to the prank YouTube shorts link
+      window.location.href = 'https://www.youtube.com/shorts/KZtQQQARWQE';
+    });
+  </script>
+</body>
+</html>
+
