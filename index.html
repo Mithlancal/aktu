@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>AKTU बी.टेक. परिणाम</title>
+
   <style>
     * {
       box-sizing: border-box;
@@ -24,39 +25,74 @@
       align-items: center;
     }
 
+    /* Slim portrait card */
     .container {
-      background: rgba(255, 255, 255, 0.95);
-      padding: 30px;
+      background: rgba(255, 255, 255, 0.96);
+      padding: 25px 20px;
       border-radius: 12px;
       box-shadow: 0 8px 24px rgba(0,0,0,0.2);
-      width: 90%;
-      max-width: 450px;
+      width: 100%;
+      max-width: 300px;
       text-align: center;
     }
 
     .logo {
-      max-width: 80px;
-      margin-bottom: 15px;
+      max-width: 65px;
+      margin-bottom: 10px;
     }
 
     h1 {
-      font-size: 1.4rem;
-      margin-bottom: 25px;
+      font-size: 1.2rem;
+      margin-bottom: 18px;
       color: #800000;
     }
 
     input {
       width: 100%;
-      padding: 12px;
-      margin-bottom: 15px;
+      padding: 10px;
+      margin-bottom: 12px;
       border: 1px solid #ccc;
       border-radius: 6px;
-      font-size: 1rem;
+      font-size: 0.95rem;
+    }
+
+    /* Fake captcha box */
+    .captcha-container {
+      display: flex;
+      align-items: center;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      padding: 10px;
+      margin-bottom: 12px;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .checkbox {
+      width: 20px;
+      height: 20px;
+      border: 2px solid #555;
+      border-radius: 3px;
+      margin-right: 10px;
+      position: relative;
+    }
+
+    .checkbox.checked::after {
+      content: "✔";
+      position: absolute;
+      top: -2px;
+      left: 2px;
+      font-size: 16px;
+      color: green;
+    }
+
+    .captcha-text {
+      font-size: 0.9rem;
     }
 
     button {
       width: 100%;
-      padding: 12px;
+      padding: 11px;
       background-color: #800000;
       color: white;
       border: none;
@@ -69,42 +105,76 @@
       background-color: #a00000;
     }
 
-    .note {
-      margin-top: 15px;
-      font-size: 0.9rem;
-      color: #444;
+    .error {
+      color: red;
+      font-size: 0.8rem;
+      margin-bottom: 8px;
     }
 
-    @media screen and (max-width: 480px) {
-      .container {
-        padding: 20px;
-      }
-
-      h1 {
-        font-size: 1.2rem;
-      }
+    .note {
+      margin-top: 12px;
+      font-size: 0.8rem;
+      color: #444;
     }
   </style>
 </head>
+
 <body>
-  <div class="container">
-    <img src="AKTU Logo.png" alt="AKTU Logo" class="logo" />
-    <h1>AKTU बी.टेक. परिणाम</h1>
-    <input type="text" placeholder="अनुक्रमांक" />
-    <input type="date" placeholder="जन्म तिथि" required />
-    <button id="viewResultBtn">आगे बढ़े</button>
-    <p class="note">
-      यह डॉ ए.पी.जे अब्दुल कलाम तकनीकी विश्वविद्यालय लखनऊ की<br />
-      आधिकारिक ई-ऑनलाइन परिणाम सेवा है।<br />
-      (एकेटीयू-एसडीसी द्वारा संचालित)
-    </p>
+
+<div class="container">
+  <img src="AKTU Logo.png" alt="AKTU Logo" class="logo" />
+  <h1>AKTU बी.टेक. परिणाम</h1>
+
+  <input type="text" id="roll" placeholder="अनुक्रमांक" />
+  <input type="date" id="dob" />
+
+  <!-- Fake CAPTCHA -->
+  <div class="captcha-container" id="captchaBox">
+    <div class="checkbox" id="checkbox"></div>
+    <div class="captcha-text">I'm not a robot</div>
   </div>
-  <script>
-    document.getElementById('viewResultBtn').addEventListener('click', function() {
-      // Redirect to the prank YouTube shorts link
-      window.location.href = 'https://www.youtube.com/watch?v=m1FQmLAzy74';
-    });
-  </script>
+
+  <div class="error" id="errorMsg"></div>
+
+  <button id="viewResultBtn">आगे बढ़े</button>
+
+  <p class="note">
+    यह डॉ ए.पी.जे अब्दुल कलाम तकनीकी विश्वविद्यालय लखनऊ की<br />
+    आधिकारिक ई-ऑनलाइन परिणाम सेवा है।<br />
+    (एकेटीयू-एसडीसी द्वारा संचालित)
+  </p>
+</div>
+
+<script>
+  let isChecked = false;
+
+  // Toggle fake captcha
+  document.getElementById("captchaBox").addEventListener("click", function() {
+    isChecked = !isChecked;
+    document.getElementById("checkbox").classList.toggle("checked", isChecked);
+  });
+
+  document.getElementById("viewResultBtn").addEventListener("click", function() {
+    const roll = document.getElementById("roll").value.trim();
+    const dob = document.getElementById("dob").value;
+    const errorMsg = document.getElementById("errorMsg");
+
+    if (!roll || !dob) {
+      errorMsg.textContent = "कृपया सभी विवरण भरें";
+      return;
+    }
+
+    if (!isChecked) {
+      errorMsg.textContent = "कृपया CAPTCHA सत्यापित करें";
+      return;
+    }
+
+    errorMsg.textContent = "";
+
+    // Redirect to your video
+    window.location.href = "https://www.youtube.com/watch?v=m1FQmLAzy74";
+  });
+</script>
+
 </body>
 </html>
-
